@@ -1,5 +1,5 @@
 import react from "react";
-import { View, Text,StyleSheet } from 'react-native';
+import { View, Text,StyleSheet,ScrollView } from 'react-native';
  
 const ColorBox = (props) => {
  
@@ -12,11 +12,15 @@ const ColorBox = (props) => {
          ? 'black'
          : 'white',
    };
-    return (
-        <View style={[styles.box,boxColor]}>
-            <Text style={[styles.boxtext,textcolor]}>{props.colorName}:{props.hexCode} </Text>
-        </View>
-    );
+  return (
+    
+      <View style={[styles.box, boxColor]}>
+        <Text style={[styles.boxtext, textcolor]}>
+          {props.colorName}:{props.hexCode}{' '}
+        </Text>
+      </View>
+   
+  );
 };
 
 
@@ -24,8 +28,8 @@ const ColorBox = (props) => {
 const styles = StyleSheet.create({
   box: {
     justifyContent: 'center',
+    width:"100%",
     alignItems: 'center',
-    backgroundColor:'teal',
     marginBottom: 20,
     padding:20,
     borderRadius: 20,

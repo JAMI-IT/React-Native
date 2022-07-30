@@ -22,31 +22,30 @@ const COLORS = [
 ];
 export default function Colorpalatte() {
   return (
-    <View>
-      <Text>
-        <SafeAreaView>
-          <FlatList
-            style={styles.contaner}
-            data={COLORS}
-            keyExtractor={(item) => item.colorName}
-            renderItem={({ item }) => (
-              <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
-            )}
-            ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
-          />
-        </SafeAreaView>
-      </Text>
-    </View>
+    <SafeAreaView>
+      <FlatList
+        style={styles.contaner}
+        data={COLORS}
+        keyExtractor={(item) => item.colorName}
+        renderItem={({ item }) => (
+          <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
+        )}
+        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   contaner: {
-    marginTop: 20,
+    marginBottom:10,
+    marginTop:0,
     padding: 20,
+
   },
   text: {
     fontSize: 18,
     fontWeight: 'bold',
+    alignItems: 'center',  
   },
 });
