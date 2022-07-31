@@ -1,31 +1,37 @@
 import { View, Text,StyleSheet } from 'react-native'
 import React from 'react'
-import { Entypo } from '@expo/vector-icons';
 
 const PROFILE = (props) => {
+  const boxColor = {
+    backgroundColor: props.color,
+  };
+     const textcolor = {
+       color:
+         parseInt(props.color.replace('#', ''), 16) > 0xffffff / 1.1
+           ? 'black'
+           : 'white',
+     };
+ 
     return (
-      <View style={styles.box}>
-        <Text style={styles.boxtext}>
-                < Entypo name={props.iconname} size={24} color="black"/>
-                {props.status}
+      <View style={[styles.box]}>
+        <Text style={[styles.boxtext, textcolor]}>
+          {props.name} {props.status}
         </Text>
       </View>
     );
 };
 
 const styles = StyleSheet.create({
-    box: {
-        marginTop: 105,
-        flex:1,
-    width: '55%',
+  box: {
+    flex: 0.3,
+    padding: 5,
+    borderRadius: 20,
+    marginHorizontal:14,
     alignItems: 'center',
-    padding:10,
-    backgroundColor: 'blue',
-        borderRadius: 15,
-        borderWidth: 2,
-        margin:10,
-
+    justifyContent: 'center',
   },
-  boxtext: { color: 'white' },
+  boxtext: {
+    color: 'black',
+  },
 });
 export default PROFILE;
