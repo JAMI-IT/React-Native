@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width:"100%",
     alignItems: 'center',
-    marginBottom: 20,
-    padding:20,
-    borderRadius: 20,
+    marginBottom: 10,
+    padding:10,
+    // borderRadius: 20,
   },
   boxtext: { color: 'white', fontWeight: 'bold' },
 });

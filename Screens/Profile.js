@@ -125,12 +125,10 @@ export default function Profile() {
           <Text style={styles.DText}>Music</Text>
         </View>
       </View>
+
     </SafeAreaView>
   );
 }
-
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 0.2,
