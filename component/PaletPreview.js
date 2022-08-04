@@ -1,6 +1,5 @@
 import { View,Text,TouchableOpacity,StyleSheet,FlatList } from 'react-native'
 import React from 'react'
-import ColorPalette from '../Screens/Colorpalatte';
 
 const PaletPreview = ({ handlePress, ColorPalette }) => {
   return (
