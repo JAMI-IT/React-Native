@@ -17,7 +17,6 @@ const PaletPreview = ({ handlePress, ColorPalette }) => {
   );
 };
 
-
 const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',

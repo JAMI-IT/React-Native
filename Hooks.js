@@ -4,8 +4,6 @@ import React from 'react'
 
 export default function Hooks() {
         const [value, setvalue] = usestate();
-
-    
     
     return (
         <SafeAreaView>

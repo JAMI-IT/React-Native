@@ -1,8 +1,9 @@
-import { StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList, RefreshControl,TouchableOpacity } from 'react-native';
 import PaletPreview from '../component/PaletPreview';
-import React, { useState ,useCallback,useEffect } from 'react';
-import ColorPalette from './Colorpalatte';
-
+import Form from './Form';
+import React, { useState, useCallback, useEffect } from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 
 
 // const SOLARIZED = [
@@ -54,7 +55,7 @@ const URL = 'https://color-palette-api.kadikraman.now.sh/palettes';
 
 export default function Home({ navigation }) {
   const [palatte, setpallete] = useState([]);
-  const handlefetchpalate =useCallback
+  const handlefetchpalate = useCallback
     (async () => {
       const result = await fetch(URL);
       const palatte = await result.json();
@@ -63,26 +64,44 @@ export default function Home({ navigation }) {
         setpallete(palatte);
       }
     },
-    []);
+      []);
 
   useEffect(() => {
     handlefetchpalate();
   }, []);
+
+
+//SEcond Ues setate for the refreshong
+  const [isRefreshing, setRefreshing] = useState(false);
+
+  const handlerefresh = useCallback(async () => {
+    setRefreshing(true);
+    await handlefetchpalate();
+    setRefreshing(false)
+
+  }, []);
+
+
   return (
-    <FlatList
-      style={styles.list}
-      // data={COLOR_PALETTES}
-      data={palatte}
-      keyExtractor={(item) => item.paletteName}
-      renderItem={({ item }) => (
-        <PaletPreview
-          handlePress={() => {
-            navigation.navigate('Colorpalatte', item);
-          }}
-          ColorPalette={item}
-        />
-      )}
+      <FlatList
+        style={styles.list}
+        // data={COLOR_PALETTES}
+        data={palatte}
+        keyExtractor={(item) => item.paletteName}
+        renderItem={({ item }) => (
+          <PaletPreview
+            handlePress={() => {
+              navigation.navigate('Colorpalatte', item);
+            }}
+            ColorPalette={item}
+          />
+        )}
+        refreshing={isRefreshing}
+        onRefresh={handlerefresh}
     />
+  
+    
+
   );
 }
 
