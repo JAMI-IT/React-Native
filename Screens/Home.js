@@ -1,10 +1,6 @@
 import { StyleSheet, FlatList, RefreshControl,Text,View,TouchableOpacity } from 'react-native';
 import PaletPreview from '../component/PaletPreview';
-import Form from './Form';
 import React, { useState, useCallback, useEffect } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
-
 
 
 // const SOLARIZED = [
@@ -85,7 +81,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View flex={0.9}>
+      <View style={{ flex: 0.9 }}>
         <FlatList
           style={styles.list}
           // data={COLOR_PALETTES}
@@ -104,12 +100,16 @@ export default function Home({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Form')}>
+      <TouchableOpacity onPress={() => navigation.navigate('ColorPalatteModel')}>
+        <Text>Launch Model </Text>
+      </TouchableOpacity>
+
+      {/* <TouchableOpacity onPress={() => navigation.navigate('Form')}>
         <Text>Form </Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
         <Text>Profile</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }

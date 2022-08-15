@@ -1,30 +1,40 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import Home from './Screens/Home';
-import Form from './Screens/Form';
 import Colorpalatte from './Screens/Colorpalatte';
-import Profile from './Screens/Profile';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { TouchableOpacity,Text} from 'react-native-web';
+import ColorPalatteModel from './Screens/ColorPalatteModel';
 
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
+const MainStack = createStackNavigator();
+
+const MainStackScreen = () => {
+  return (
+    <MainStack.Navigator>
+      
+      <MainStack.Screen name='Home' component={Home} />
+      <MainStack.Screen name='Colorpalatte' component={Colorpalatte} options={({route})=>({title: route.params.paletteName})} />
+
+    </MainStack.Navigator>
+  )
+}
 
 const app = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Form" component={Form} />
-        <Stack.Screen name="Profile" component={Profile} />
-
-        <Stack.Screen
-          name="Colorpalatte"
-          component={Colorpalatte}
-          options={({ route }) => ({ title: route.params.paletteName })}
+      <RootStack.Navigator mode="modal">
+        <RootStack.Screen
+          name="Main"
+          component={MainStackScreen}
+          options={{ headerShown: false }}
         />
-      </Stack.Navigator>
+        <RootStack.Screen
+          name="ColorPalatteModel"
+          component={ColorPalatteModel}
+        />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
