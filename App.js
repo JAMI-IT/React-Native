@@ -15,14 +15,15 @@ const app = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-          <Stack.Screen name="Form" component={Form} />
-          <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Form" component={Form} />
+        <Stack.Screen name="Profile" component={Profile} />
+
         <Stack.Screen
           name="Colorpalatte"
           component={Colorpalatte}
           options={({ route }) => ({ title: route.params.paletteName })}
         />
-        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
