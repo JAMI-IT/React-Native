@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, RefreshControl,Text,View,TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList,Text,View,TouchableOpacity } from 'react-native';
 import PaletPreview from '../component/PaletPreview';
 import React, { useState, useCallback, useEffect } from 'react';
 
@@ -84,7 +84,6 @@ export default function Home({ navigation }) {
       <View style={{ flex: 0.9 }}>
         <FlatList
           style={styles.list}
-          // data={COLOR_PALETTES}
           data={palatte}
           keyExtractor={(item) => item.paletteName}
           renderItem={({ item }) => (
@@ -100,8 +99,12 @@ export default function Home({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity onPress={() => navigation.navigate('ColorPalatteModel')}>
-        <Text>Launch Model </Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('ColorPalatteModel')}
+      >
+        <Text style={styles.text}>
+          Addd Color Scheme
+        </Text>
       </TouchableOpacity>
 
       {/* <TouchableOpacity onPress={() => navigation.navigate('Form')}>
@@ -119,7 +122,17 @@ const styles = StyleSheet.create({
   list: {
     padding: 10,
     backgroundColor:'white'
-     
-  }
+  
+  },
+text: {
+   
+            fontWeight: 'bold',
+            color: 'black',
+            textDecorationColor: 'yellow',
+            textShadowColor: 'red',
+            textShadowRadius: 1,
+    
+}
+
 })
 
