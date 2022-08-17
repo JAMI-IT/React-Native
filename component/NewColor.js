@@ -11,7 +11,7 @@ export default function NewColor(props) {
     <View      style={{
         flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems:'center',
+      alignItems: 'center',
 
       }}
     >

@@ -1,8 +1,8 @@
-import { View, Text, SafeAreaView, ScrollView, StyleSheet, TextInput,FlatList } from 'react-native';
-import { useState } from 'react';
+import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput,FlatList ,Alert} from 'react-native';
+import { useState,useCallback } from 'react';
 import React from 'react';
 import NewColor from '../component/NewColor';
-
+import { useNavigation } from '@react-navigation/native';
 
 const COLORS = [
   { colorName: 'AliceBlue', hexCode: '#F0F8FF' },
@@ -154,31 +154,45 @@ const COLORS = [
   { colorName: 'YellowGreen', hexCode: '#9ACD' },
 ];
 
-
-
-
 export default function ColorPalatteModel() {
 
+  const navigation = useNavigation();
+
   const [pallate, setpallete] = useState('');
+
+  const handlesubmit = useCallback (() =>{
+      if (!pallate) {
+            Alert.alert('Please Enter the Name')        
+    }
+      else {
+        const newColorPallete = {
+          paletteName: pallate,
+          color: [],
+        };
+        navigation.navigate('Home', newColorPallete);
+
+    }
+},[pallate])
 
 
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <ScrollView>
           <Text>Enter the Name Of your Colorpalatte</Text>
           <TextInput
             style={styles.input}
             value={pallate}
             onChange={setpallete}
             placeholder="Enter New Color"
-          />
-        </ScrollView>
+        />
+        <TouchableOpacity style={styles.box} onPress={handlesubmit}>
+          <Text style={styles.boxtext}>Submit</Text>
+        </TouchableOpacity>
       </View>
       <View>
         <FlatList
           data={COLORS}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.colorName}
           renderItem={({ item }) => (
             <NewColor name={item.colorName} hexacode={item.hexCode} />
           )}
@@ -194,9 +208,22 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     padding: 5,
     borderRadius: 5,
+    marginBottom: 40,
+    backgroundColor:'white'
   },
   container: {
     flex:1,
     padding: 20,
   },
+  box: {
+    height: 40,
+    backgroundColor: 'teal',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius:5,
+  },
+  boxtext: {
+    color: 'white',
+    fontWeight:'bold',
+  }
 });

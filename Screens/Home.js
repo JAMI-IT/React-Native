@@ -50,7 +50,12 @@ const URL = 'https://color-palette-api.kadikraman.now.sh/palettes';
 
 
 
-export default function Home({ navigation }) {
+export default function Home({ navigation, route }) {
+  
+  const newColorPallete = route.params?route.params.newColorPallete:undefined;
+
+
+
   const [palatte, setpallete] = useState([]);
   const handlefetchpalate = useCallback
     (async () => {
@@ -64,8 +69,13 @@ export default function Home({ navigation }) {
       []);
 
   useEffect(() => {
+if (newColorPallete) {
+  setpallete(palatte=>[newColorPallete, ...palatte])
+    }
     handlefetchpalate();
-  }, []);
+    
+
+  }, [newColorPallete]);
 
 
 //SEcond Ues setate for the refreshong
